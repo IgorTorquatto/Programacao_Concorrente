@@ -1,0 +1,95 @@
+-P.Concorrente:
+
+As instruções são executadas sequencialmente sobre um processador, o qual aloca memória o código e para os dados do programa.
+
+Um programa concorrente é um conjunto de processos/threads, códigos sequenciais ordinários os quais são executados em uma abstração de paralelismo.
+
+Reservamos a palavra Programa Concorrente para o conjunto de processos sequenciais.
+
+Processo - Unidade de Processamento Concorrente:
+
+
+-Pseudo-paralelismo:
+
+Um programa concorrente é executado por se compartilhar o poder de processamento de um único processador entre os processos desse programa.
+
+Um conceito fundamental em sistemas operacionais é o conceito de processo. 
+
+Um processo é basicamente um programa em execução.
+
+O paralelismo é abstrato porque não requeremos mais que um processador físico seja usado para executar cada processo.
+
+
+-Controladores de I/O:
+
+Computação do processo, em paralelo a I/O.
+
+Programar os controladores de I/O como processos separados, os quais são executados em paralelo com o processo de computação principal. 
+
+
+-Concorrência baseada em time-slicing:
+
+Um programa do SO chamado Scheduler é executado para determinar qual processo deve ser permitido executar no próximo intervalo.
+
+O Scheduler pode levar em consideração as prioridades dos processos.
+
+
+-Multiprogramação
+
+Em um sistema de multiprogramação a CPU fica se alternando entre a execução de vários processos, com tempo de processador (time slice) em milisegundos.
+
+
+-Processamento Distribuído:
+
+Anos 80 -  Dois computadores de grande porte (IBM 4341) são interligados (exemplo, o caso da Eletrosul nos anos 80).
+
+Agora, surge uma primeira forma de distribuir o processamento e distribuir a informação através dos terminais remotos.
+
+Anos 80 - Surgem as redes de computadores para interligar o trabalho dos desenvolvedores e compartilhar recursos computacionais: processamento para ser distribuído em redes.
+
+-Atualmente:
+
+Atualmente, os processadores são multi-core.
+
+Atualmente, a execução de diversos aplicativos (programas) por um único usuário, em uma máquina de um único processador, ligado em rede: processamento paralelo nas máquinas, processamento distribuído via rede.
+
+
+-Programas Concorrentes/Paralelos:
+
+Por causa das possíveis interações entre os processos/threads que compreendem um programa concorrente é difícil escrever um programa concorrente/paralelo de forma correta.
+
+Para interagirem, processos/threads precisam se sincronizar e se comunicar diretamente ou não.
+
+
+-O que vamos executar:
+
+A unidade de processamento concorrente mais atual, devido a capacidade de processamento dos processadores ter aumentado, será a Thread.
+
+Threads foram criadas com o intuito de reduzir a criação, e otimizar a troca de contexto de processos e para economizar outros recursos do sistema. 
+
+Threads estão sempre associadas a um único processo, que por sua vez, pode possuir múltiplas threads. 
+
+Threads compartilham o processador (ou os núcleos de um processador) da mesma maneira que um processo, ou seja: cada thread tem o seu próprio contexto de hardware, mas threads de um mesmo processo compartilham entre si o mesmo contexto de software e memória.
+
+
+-Programação Paralela:
+
+Consiste em executar simultaneamente várias partes de um mesmo programa, dividido em partes.
+
+Tornou-se possível, a partir de processadores multicore, e máquinas de arquitetura paralela (vários processadores executando simultaneamente).
+
+
+Network:
+
+Aplicações são executadas em máquinas diferentes interligadas por uma rede
+
+"Coleção de computadores independentes que se apresenta ao usuário como um sistema único e consistente.”
+
+"Coleção de computadores autônomos interligados através de uma rede de computadores e equipados com software que permita o compartilhamento dos recursos do sistema: hardware, software e dados."
+
+
+-Suporte para programação distribuída:
+
+APIs e Bibliotecas: fornecem rotinas para comunicação entre processos  (Sockets).
+
+Middleware para Programação Distribuída: fornece suporte para criar/executar programas distribuídos (OpenMPI)

@@ -1,0 +1,10 @@
+Concorrente: 
+o programa é executado sequencialmente concorrendo pela disponibilidade do(s) processador(es) com os demais programas.
+
+Paralelo: 
+é também uma programação concorrente, porém com mais linhas de execuções, onde o programa é dividido em vários "sub-processos" conhecido como Threads que serão executados paralelamente com o processo pai. Essa forma de desenvolvimento é melhor aproveitada quando dispõe de dois ou mais núcleos de processamento.
+
+Concurrency is when two or more tasks can start, run, and complete in overlapping time periods. It doesn't necessarily mean they'll ever both be running at the same instant. For example, multitasking on a single-core machine.
+Parallelism is when tasks literally run at the same time, e.g., on a multicore processor.
+
+Atualmente, todos os computadores são essencialmente paralelos!
