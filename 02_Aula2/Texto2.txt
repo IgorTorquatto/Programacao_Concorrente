@@ -1,0 +1,79 @@
+--Anotações da aula --
+
+P Concorrente:
+
+Conjunto de processos sequenciais que concorrem na hora da execução.
+
+
+Paralelismo abstrato:
+
+Sinônimo de pseudo-paralelismo.
+
+
+Processamento Distribuído:
+
+Distribuir o processamento entre várias máquinas com processadores diferentes.
+
+Distribuir informação por meio de terminais remotos.
+
+Anos 80 - Surgem as redes de computadores para interligar o trabalho dos desenvolvedores e compartilhar recursos computacionais: processamento para ser distribuído
+em redes.
+
+
+Thread:
+
+Linha de execução dentro de processos
+            -> T4->T5->T6
+T1->T2->T3->                {Pseudo-Paralelismo}
+            ->T4->T5->T6
+
+Diferente linhas de execução
+
+A ideia de P.Concorrente é usar apenas um código fonte para paralelizar o programa. Não é preciso entender como as coisas funcionam no SO, mas sim a nível de programação.
+
+
+Dois Processos:
+
+-Considerando que os dois processos foram executados ao mesmo tempo-
+
+N:  Integer  := 0;
+
+Process P1 is
+  begin
+    N := N + 1;
+  end P1;
+
+Process P2 is
+   begin
+     N := N + 1;
+   end P2;
+  
+
+Não tem como saber o valor de n exatamente.
+Queremos programar dessa forma para podermos sincronizar os processos de forma que um processo não altere os valores de outro processo.
+
+--Um programador pode ser totalmente confundido pelo comportamento que um programa concorrente/paralelo pode exibir--
+
+
+Thread:
+
+Threads foram criadas com o intuito de reduzir a criação, e otimizar a troca de contexto de processos e para economizar outros recursos do sistema. 
+
+**Linha de execução**
+            ->tarefa
+Processo1->
+            ->tarefa
+            ->tarefa
+
+Abrir linhas de execução paralelos ao concorrente.
+
+Threads compartilham o processador (ou os núcleos de um processador) da mesma maneira que um processo, ou seja: cada thread tem o seu próprio contexto de hardware, mas threads de um mesmo processo compartilham entre si o mesmo contexto de software e memória.
+(Por isso há economia)
+
+
+Parelelo:
+
+Exemplo: Somátorio de 1 bilhão de elementos aleatórios em um for divididos em 4 threads, dividiríamos os números em 4 x 1/4 e cada thread faria seu somatório e no final somaríamos todos os resultados de cada uma.
+Isso seria mais rápido do que fazer apenas em um único processo.
+
+Para considerar nossa paralelização eficiente ou não, vamos considerar a análise de máquina em segundos.
