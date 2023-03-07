@@ -1,0 +1,66 @@
+Introdução: 
+
+O paralelismo está profundamente presente na microarquitetura de um processador atual;
+Atualmente qualquer computador, tablet ou smartphone possui um processador com múltiplos cores (multicore), cada um com capacidade de executar seus próprios fluxos de instruções;
+Além disso, muitos servidores possuem múltiplos processadores multicore;
+Finalmente, muitos computadores pessoais possuem atualmente processadores gráficos capazes de executar várias instruções paralelas (GPUs)
+
+
+Modelos Computação paralela:
+
+Shared Memory Systems - Sistemas com memória compartilhada; (processos compartilham única memória, processador único)
+Distributed Systems - Sistemas distribuídos; (processos compartilham várias memórias em várias máquinas diferentes)
+Graphic Processor Units - Unidades de processamento gráfico. (centenas unidades de processamento)
+
+
+Sistemas com memória compartilhada:
+
+Múltiplas unidades de processamento interligadas a uma única memória compartilhada
+
+
+Sistemas Distribuídos:
+
+
+Consistem em várias unidades computacionais interligadas em rede, cada uma com sua unidade de processamento e memória física
+
+Unidades de processamento gráfico:
+
+
+Utilizados como co-processadores para resolver problemas de computação numérica intensiva.
+
+
+Taxonomia de Flyn:
+
+Abrange quatro classes de arquiteturas de computadores  (multiple-> paralelo)
+
+SISD: Single instruction, Single Data      única instruções único dado
+MISD: Multiple Instructions, Single Data    aplicar várias instruções/operações sobre um mesmo dado
+SIMD: Single Instruction Multiple Data       vários dados que são divididos e usando a mesma intrução em cada conjunto seperado.  -mais comum-  -máquinas fazem a mesma operação em máquinas diferentes-
+MIMD: Multiple Instructions Multiple Data      modelo distribuído instruções para máquinas diferentes múltiplos dados e múltiplas instruções (divide os dados e as instruções também) -máquinas fazem  operações diferentes em máquinas diferentes-
+
+
+SISD - Single Instruction, Single Data:
+
+é um termo que refere a uma Arquitetura de Computadores em que um único processador executa um único fluxo de dados, para operar em dados armazenados em uma única memória
+Isto corresponde à Arquitetura de Von Neumann
+
+
+SIMD - Single Instruction, Multiple Data:
+
+a mesma instrução é aplicada simultaneamente a diversos dados para produzir mais resultados. O modelo SIMD é adequado para o tratamento de conjuntos regulares de dados, como as matrizes e vetores.
+Paralelismo de dados
+Mesmas instruções aplicadas a conjuntos diferentes de dados
+
+
+MISD - Multiple Instructions, Single Data:
+
+n processadores, cada um com sua unidade de controle, compartilham uma única memória;
+Paralelismo de instrução
+Múltiplas instruções aplicadas ao mesmo conjunto de dados
+
+
+MIMD - Multiple Instruction, Multiple Data:
+
+Corresponde à classe mais geral e mais poderosa da taxonomia de Flynn
+n processadores, n fluxos de instruções, e n fluxo de dados. Cada processador com sua própria unidade de controle e memória local;
+Modelo distribuído: Vários PCs interligados por uma rede
