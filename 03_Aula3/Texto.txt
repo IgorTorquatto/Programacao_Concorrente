@@ -64,3 +64,79 @@ MIMD - Multiple Instruction, Multiple Data:
 Corresponde à classe mais geral e mais poderosa da taxonomia de Flynn
 n processadores, n fluxos de instruções, e n fluxo de dados. Cada processador com sua própria unidade de controle e memória local;
 Modelo distribuído: Vários PCs interligados por uma rede
+
+
+Crivo de Eratostenes:
+
+O Crivo de Eratóstenes é um algoritmo e um método simples e prático para encontrar números primos até um certo valor limite.
+Estratégia de paralelização: Dividir os dados a serem avaliados entre as diferentes unidades de processamento. Ao final juntar os números primos encontrados por cada unidade. 1
+
+Nosso Foco:
+
+Modelo de Memória Compartilhada
+SIMD - Single Instruction, Multiple Data - Paralelismo de Dados
+Threads
+OpenMP  -> abstrai as Threads
+
+Modelo de Memória Distribuída
+Message Passing Interface - OpenMPI
+
+
+Análise de desempenho:
+
+As principais métricas de análise de desempenho de programas paralelos são:
+Speedup
+É a medida que representa o ganho de se resolver um problema com computação paralela;
+Eficiência
+É a medida de quão bem os processadores foram utilizados na resolução de uma tarefa
+Escalabilidade
+Representa a habilidade de ser eficiente em um programa paralelo. Define o poder computacional em proporcionalmente ao número de unidades de processamento. 
+
+
+Speedup:
+
+Razão entre o tempo de execução serial em uma única unidade de processamento e o tempo de execução paralelo;
+
+S = (Ts/Tp);
+
+Ts - Tempo de execução serial
+Tp - Tempo de execução paralelo
+p - quantidade de unidades de processamento
+
+
+Eficiência:
+
+E = S/P = Ts /pTp
+
+p - quantidade de unidades de processamento
+
+Quantidade de unidades de processamento a ser usada é uma medida importante a ser considerada.
+
+E <<1 low efficiency
+
+
+Lei de Amdahl:
+
+speedup =  1 / (1-P) +P/S
+
+P é a proporção do algoritmo que pode ser paralelizada
+S é o fator de speedup para a proporção do algoritmo a ser paralelizado
+
+
+Como projetar um programa paralelo ?
+
+Decomposição de tarefas
+Decomposição de domínio;
+Decomposição funcional;
+Atribuição de tarefas
+Especificação do mecanismo de distribuição de tarefas entre as várias unidades de processamento;
+Aglomeração
+Combinar tarefas pequenas em tarefas menores, com o objetivo de aumentar o desempenho;
+Mapeamento
+Onde cada tarefa será executada;
+
+Obs: memória compartilhada -> única máquina
+memória distribuída -> vários computadores
+speedup -> quantas vezes mais rápido foi
+eficiência -> mais próximo de 1 maior proveito do hardware utilizado
+SIMD -> instruções simples múltiplos dados
