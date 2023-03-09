@@ -1,0 +1,30 @@
+slides aula4
+
+Threads:
+
+O objetivo é realizar várias tarefas ao mesmo tempo (não necessariamente simultaneamente)
+Podem começar simultaneamente, mas depois podem ficar independentes
+O foco não é desempenho nesse momento, e sim entender que o objetivo é realizar várias tarefas ao mesmo tempo
+
+
+Thread Python:
+
+class threading.Thread
+thread1 = threading.Thread(target=funcao, args=(x,y,),name='NOME')
+
+
+Preparando o VsCode para OpenMP:
+
+Instale as Extensões: C/C++ (microsoft), C/C++ Extension Pack (microsoft) e Code Runner (jun han)
+
+configurar para rodar o open mp ver o vídeo.
+
+Preparando o VsCode para Python:
+
+Python
+
+Python Extension Pack
+
+PyLance
+
+Pylint
