@@ -8,6 +8,7 @@ def tarefa1(min,max):
    print(randint(min,max))
 
 def main():
+   #pseudo-paralelismo
    #thread = threading.Thread(target=funcao, args=(x,y,),name='NOME')
     thread1 = threading.Thread(target=tarefa1, args=(0,10,),name='Tarefa 01')
     thread2 = threading.Thread(target=tarefa1, args=(10,100,),name='Tarefa 02')
@@ -16,7 +17,7 @@ def main():
 
     thread1.start() #executa e já começa a próxima sem ter que esperar toda essa finalizar
     thread2.start()
-    thread3.start()
+    thread3.start() #comandos para esperar ( trava e só executa a próxima linha quando todas as execuções até aqui executarem)
     thread4.start()
 
     thread1.join()
