@@ -1,0 +1,26 @@
+Programa
+
+O programa é o que já está definido na pergunta. Em geral um programa gera um executável que pode ser chamado diretamente ou através de outros executáveis (bom, na verdade a chamada inicial não deixa por um executável do sistema operacional).
+
+Programa é uma sequência de instruções codificadas (escritas) a serem executadas pelo computador. Thread é uma sequência de instruções sendo executadas. Propositalmente não falarei de processo aqui.
+
+Nesse contexto talvez programa esteja sendo usado como sinônimo de executável.
+
+
+Processo
+
+Todo executável chamado diretamente rodará em um processo. Executáveis chamados dentro de um processo podem rodar explicitamente em outro processo ou no mesmo processo (quando isso for possível), em geral usando uma DLL.
+
+O processo é controlado pelo sistema operacional tanto o tempo de processador que ele tem à disposição quanto à memória disponível (que pode ir sendo solicitada pelo processo). Além, é claro, de permissões de acesso a outros recursos que ficam vinculados ao processo como um todo.
+
+Um processo tem um espaço de endereçamento de memória virtual só para ele. É como se ele rodasse sozinho no computador. Claro que isso não ocorre na realidade, mas ele se comporta como se fosse. Mas isso é outro assunto. O mesmo executável pode rodar em vários processos.
+
+
+
+Thread
+
+A/O thread se assemelha ao processo porque ele tem uma nova linha de execução (e tudo que está relacionado a isto) e o sistema operacional o trata de forma igual ao processo para alocação de tempo de processamento. Mas em termos de memória é responsabilidade da aplicação controlar o acesso compartilhado por todo o processo.
+
+É comum que as aplicações possuam uma stack para cada thread, mas apenas um (já vi casos de ter mais que um) espaço de heap para todo processo. Por isso costuma-se dizer que é complicado programar com threads, compartilhar estado é difícil. Threads estão vinculadas ao processo, até porque o processo principal em si não deixa de ser uma thread.
+
+Algumas aplicações possuem um controle próprio de threads internas não controladas pelo processador/sistema operacional. Isso tem algumas vantagens (principalmente evitar troca de contexto do sistema operacional que é algo relativamente caro) e desvantagens (principalmente não podem usar outros processadores). Costumam ser chamadas de soft, light ou green threads.

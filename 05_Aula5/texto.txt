@@ -1,5 +1,6 @@
 - Relembrando os conceitos de threads;
 - SIMD (Simple instruction multiple data)
+  Mesmas instuções executados com dados diferentes. (ex: print iterações de um for)
 - Processo porgama em execução, dentro do processo temos várias threads.
 - Join espera a thread terminar (não é obrigatório)
 
@@ -28,3 +29,8 @@ OpenMP:
 OpenMP: Uma API para escrever aplicações Multithreaded
 Um conjunto de diretivas do compilador e biblioteca de rotinas para programadores de aplicações paralelas
 Simplifica muito a escrita de programas multi-threaded (MT)
+
+
+Speedup:
+
+Dobrar o numero de threads (3 threads = 3 x mais);

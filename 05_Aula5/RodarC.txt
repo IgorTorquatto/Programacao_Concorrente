@@ -1,14 +1,23 @@
-Comando:
 
-Dentro da pasta do arquivo:
+Arquivo C:
+
+Dentro da pasta do arquivo
+passo1: (Build)
 
 gcc -o programa arquivo.c
-./programa
 
+passo2: (Run)
+
+./programa
 
 Onde "programa" é o executável e "arquivo.c" é a fonte.
 
-
 OpemMp:
 
-gcc -fopenmp -o programa arquivo.c
+passo 1: (build)
+
+gcc -fopenmp -o programa arquivo.c 
+
+passo2: (run)
+
+./programa
