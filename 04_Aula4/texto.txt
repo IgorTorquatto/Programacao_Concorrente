@@ -12,6 +12,8 @@ Thread Python:
 class threading.Thread
 thread1 = threading.Thread(target=funcao, args=(x,y,),name='NOME')
 
+funcionam ao memso tempo concorrentemente.
+
 
 Preparando o VsCode para OpenMP:
 

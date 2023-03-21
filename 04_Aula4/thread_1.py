@@ -8,7 +8,7 @@ def tarefa1(min,max):
    print(randint(min,max))
 
 def main():
-   #pseudo-paralelismo
+   #pseudo-paralelismo (todas as threads vão para a mesma unidade de processamento, a programação em python é concorrente)
    #thread = threading.Thread(target=funcao, args=(x,y,),name='NOME')
     thread1 = threading.Thread(target=tarefa1, args=(0,10,),name='Tarefa 01')
     thread2 = threading.Thread(target=tarefa1, args=(10,100,),name='Tarefa 02')

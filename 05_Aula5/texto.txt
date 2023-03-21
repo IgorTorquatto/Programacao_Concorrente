@@ -1,0 +1,30 @@
+- Relembrando os conceitos de threads;
+- SIMD (Simple instruction multiple data)
+- Processo porgama em execução, dentro do processo temos várias threads.
+- Join espera a thread terminar (não é obrigatório)
+
+Thread em python:
+
+Então, por que usar threads em Python ?
+Para realizar tarefas concorrentes, sem a necessidade de se esperar que uma terminar para iniciar outra!
+Aplicações com interface gráfica;
+Tarefas de entrada e saída;
+Conexões de rede;
+Acesso a banco de dados;
+
+
+Thread em C:
+
+pThreads
+API de baixo nível para manipulação de threads;
+Controle mais refinado sobre as tarefas
+OpenMP
+API de alto nível, portável, e multi linguagem (C/C++/FORTRAN);
+Fácil utilização e adaptação de programas seriais.
+
+
+OpenMP:
+
+OpenMP: Uma API para escrever aplicações Multithreaded
+Um conjunto de diretivas do compilador e biblioteca de rotinas para programadores de aplicações paralelas
+Simplifica muito a escrita de programas multi-threaded (MT)
