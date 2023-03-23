@@ -18,10 +18,10 @@ int main() {
     float *vetor = NULL;
     vetor = gerar_vetor(MAX);
 
-    //Busca sequencial
+
     //Começando a resolução:
 
-
+    //Busca Sequencial
     float n = 0.3578;
     int i;
     double inicio = omp_get_wtime();
@@ -36,7 +36,7 @@ int main() {
     double t_sequencial= fim - inicio;
 
     //Tempo:
-    printf("Tempo Sequencial: %f",t_sequencial);
+    printf("\n \n Tempo Sequencial: %f \n \n" ,t_sequencial);
 
     //Busca paralela
 
@@ -46,7 +46,7 @@ int main() {
 		#pragma omp for
 			for (i=0;i<MAX;i++) {
                 if (vetor[i]==n) {
-                    printf("Thread[%d] ACHOU: %ld\n", omp_get_thread_num(),vetor[i]);
+                    printf("Achou! \n");
                 }
 			}
 	}
@@ -54,11 +54,14 @@ int main() {
 	double t_paralelo = fim - inicio;
 
 	//Tempo:
-	printf("Execucao paralela: %f\n",t_paralelo);
+	printf("\n \n Tempo Paralelo: %f \n \n",t_paralelo);
 
 	//Speedup:
 	double speedup = t_sequencial/t_paralelo;
 	printf("Speedup: %.4f\n", t_sequencial/t_paralelo);
+
+	//Eficiência:
+	printf("Eficiência: %f \n \n ",speedup / 3.0);
     /*
     FIM
     */
@@ -83,3 +86,8 @@ void mostrar_vetor(float *v,int tamanho) {
     }
     printf("\n");
 }
+
+/*
+ Template pronto em :
+  cc0021/codigo/template_openmp.c
+*/
