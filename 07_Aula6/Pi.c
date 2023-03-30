@@ -29,7 +29,7 @@ int main() {
     double tempo_sequencial = fim-inicio;
     
     printf("Valor do pi (Sequencial) %f\n",pi);
-    printf("Execucao sequencial(s): %f\n",tempo_sequencial);
+    printf("Tempo de execução (Sequencial): %f\n",tempo_sequencial);
    
    //Paralelo:
    
@@ -39,7 +39,7 @@ int main() {
     inicio = omp_get_wtime();
     step = 1.0/(double) num_steps;
     
-    #pragma omp parallel private(x) num_threads(4)
+    #pragma omp parallel private(x) num_threads(3)
     {
         #pragma omp for reduction (+:soma)
         for (int i=0;i< num_steps; i++){
@@ -54,9 +54,10 @@ int main() {
     double speedup = tempo_sequencial/tempo_paralelo;
     
     printf("Valor do pi (Paralelo) %f\n",pi);
-    printf("Tempo execução paralelo: %f\n",tempo_paralelo);
-    printf("speedup: %.4f\n", speedup);
-	printf("Eficiência: %.4f\n",speedup/4.0);
+    printf("Tempo execução (Paralelo): %f\n",tempo_paralelo);
+    printf("Speedup: %.4f\n", speedup);
+	printf("Eficiência: %.4f\n",speedup/3.0);
+
     return 0;
     
 }
