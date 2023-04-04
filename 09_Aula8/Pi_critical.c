@@ -18,7 +18,7 @@ int main() {
 
     #pragma omp parallel num_threads(4)
     {
-
+        //Cada Thread possui suas variáveis locais
         double x,sum;
         sum= 0.0;
         int i, id, nthrds;
@@ -34,6 +34,7 @@ int main() {
         //Usando o omp critical:
         #pragma omp critical
             pi+=sum*step;
+        //Apenas uma thread de cada vez acessa o pi para acumular a soma
 
     }
 
