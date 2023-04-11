@@ -25,6 +25,7 @@ int main() {
     srand(time(NULL));
     int *vetor = NULL;
     vetor = gerar_vetor_inteiro(TAMANHO);
+    int i;
 
 
     //Sequencial:
@@ -36,7 +37,7 @@ int main() {
     printf("Digite um número inteiro: \n");
     scanf("%d",&entrada);
 
-    for(int i = 0; i < TAMANHO; i++){
+    for(i = 0; i < TAMANHO; i++){
         if(entrada == vetor[i]){
             //printf("Valor encontrado no vetor. \n");
             num_vezes++;
@@ -63,7 +64,7 @@ int main() {
     #pragma omp parallel num_threads(4)
     {
         #pragma omp for
-        for(int i = 0 ; i < TAMANHO ; i++){
+        for( i = 0 ; i < TAMANHO ; i++){
             //printf("Valor encontrado no vetor. \n");
             num_vezes++;
         }
