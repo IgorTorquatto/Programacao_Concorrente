@@ -1,12 +1,13 @@
-/*
-Escreva um programa serial e paralelo em C, com OpenMP, que dado um vetor de inteiros e um valor x, encontrar quantas vezes x ocorre no vetor. Calcular as métricas de desempenho. 
-*/
-
-
 #include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+//al : Cicero Igor
+
+/*
+Escreva um programa serial e paralelo em C, com OpenMP, que dado um vetor de inteiros e um valor x, encontrar quantas vezes x ocorre no vetor. Calcular as métricas de desempenho. 
+*/
 
 #define MAX 100
 #define TAMANHO 100000000    //1000

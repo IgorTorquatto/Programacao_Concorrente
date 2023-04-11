@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+//al : Cicero Igor
 
 /*
 Escreva um programa em C, com OpenMP, que dado um número maior do que 1.000.000.000 (um bilhão), calcular a soma de todos os seus divisores. 
