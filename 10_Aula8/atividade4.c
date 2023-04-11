@@ -2,124 +2,66 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
 //al : Cicero Igor
 
 /*
-Escreva um programa serial e paralelo em C, com OpenMP, que dado um vetor de inteiros e um valor x, encontrar quantas vezes x ocorre no vetor. Calcular as métricas de desempenho. 
+Escreva um programa em C, com OpenMP, que dado um número maior do que 1.000.000.000 (um bilhão), calcular a soma de todos os seus divisores. 
 */
 
-#define MAX 100
-#define TAMANHO 100000000    //1000
+#define TAMANHO 100000000   // 1000
 
-double *gerar_vetor(int n);
-int *gerar_vetor_inteiro(int n);
-void mostrar_vetor_inteiro(int *v,int tamanho);
-void mostrar_vetor(double *v,int tamanho);
 
 int main() {
-    /*
-    INICIO
-    */
-    time_t t;
-    srand(time(NULL));
-    int *vetor = NULL;
-    vetor = gerar_vetor_inteiro(TAMANHO);
-
-
+  
     //Sequencial:
-    int entrada;
-    int num_vezes = 0;
-    double tempo_sequencial,inicio,fim;
+    long int soma = 0;
+    int divisores = 0;
+    double tempo_paralelo,tempo_sequencial,fim,inicio,speedup,eficiencia;
 
-    inicio= omp_get_wtime();
-    printf("Digite um número inteiro: \n");
-    scanf("%d",&entrada);
+    inicio = omp_get_wtime();
 
-    for(int i = 0; i < TAMANHO; i++){
-        if(entrada == vetor[i]){
-            //printf("Valor encontrado no vetor. \n");
-            num_vezes++;
+    for(int i = 1 ; i <= TAMANHO ; i ++){
+        if (TAMANHO % i == 0){
+            //divisores ++;
+            soma += i;
         }
     }
 
     fim = omp_get_wtime();
     tempo_sequencial = fim - inicio;
 
-    printf("O valor %d foi encontrado %d vezes no vetor \n",entrada,num_vezes);
-    printf("Tempo de execução sequencial: %.4f \n",tempo_sequencial);
+    printf("Sequencial: \n");
+    //printf("O número tem %d divisores \n",divisores);
+    printf("Soma : %ld \n ", soma);
+    printf("Tempo de execução sequencial: %f \n",tempo_sequencial);
 
     //Paralelo:
-
-    printf("Paralelo: \n");
-    double tempo_paralelo;
-    num_vezes = 0;
     inicio = 0.0;
     fim = 0.0;
-    num_vezes = 0;
+    //divisores = 0;
+    soma = 0;
 
     inicio = omp_get_wtime();
 
-    #pragma omp parallel num_threads(4)
+    #pragma omp parallel num_threads(3)
     {
-        #pragma omp for
-        for(int i = 0 ; i < TAMANHO ; i++){
-            //printf("Valor encontrado no vetor. \n");
-            num_vezes++;
+        #pragma omp for reduction (+:soma)
+        for(int i = 1 ; i <= TAMANHO ; i ++){
+        if (TAMANHO % i == 0){
+           // divisores ++;
+            soma += i;
         }
     }
-
+    }
+    
     fim = omp_get_wtime();
+
     tempo_paralelo = fim - inicio;
-    double speedup = tempo_sequencial / tempo_paralelo;
-    double eficiencia = speedup / 4.0;
 
-    printf("O valor %d foi encontrado %d vezes no vetor \n",entrada,num_vezes);
-    printf("Tempo de execução paralelo: %.4f \n",tempo_paralelo);
+    printf("Paralelo: \n");
+    //printf("O número tem %d divisores \n",divisores);
+    printf("Soma : %ld \n ", soma);
+    printf("Tempo de execução paralelo: %f \n",tempo_paralelo);
 
-    printf("Speedup: %.4f \n",speedup);
-    printf("Eficiência: %.4f \n",eficiencia);
-
-    /*
-    FIM
-    */
-    return 0;
-}
-
-double *gerar_vetor(int n) {
-    double *vetor;
-    int i;
-    vetor = (double *)malloc(sizeof(double) * n);
-    for (i=0;i<n;i++) {
-        double num = (rand() / (float)RAND_MAX);
-        vetor[i] = num;
-    }
-    return vetor;
-}
-
-int *gerar_vetor_inteiro(int n) {
-    int *vetor;
-    int i;
-    vetor = (int *)malloc(sizeof(int) * n);
-    for (i=0;i<n;i++) {
-        int num = (rand() % MAX);
-        vetor[i] = num;
-    }
-    return vetor;
-}
-
-void mostrar_vetor(double *v,int tamanho) {
-    int i;
-    for (i=0;i<tamanho;i++) {
-        printf("[%.5f]",v[i]);
-    }
-    printf("\n");
-}
-
-void mostrar_vetor_inteiro(int *v,int tamanho) {
-    int i;
-    for (i=0;i<tamanho;i++) {
-        printf("[%d]",v[i]);
-    }
-    printf("\n");
+     return 0;
 }
