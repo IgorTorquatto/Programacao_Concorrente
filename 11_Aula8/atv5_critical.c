@@ -81,7 +81,7 @@ int main() {
     double speedup = tempo_sequencial / tempo_paralelo;
     double eficiencia = speedup / 4.0;
 
-    printf("O valor %d foi encontrado %d vezes no vetor \n",num_vezes,auxiliar);
+    printf("O valor %d foi encontrado %d vezes no vetor \n",entrada,auxiliar);
     printf("Tempo de execução paralelo: %.4f \n",tempo_paralelo);
 
     printf("\n Métricas: \n");
