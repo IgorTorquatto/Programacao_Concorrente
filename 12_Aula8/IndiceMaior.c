@@ -23,6 +23,7 @@ int main() {
     int *vetor = NULL;
     vetor = gerar_vetor_inteiro(TAMANHO);
     
+    int indice;
     double inicio, fim;
     double speedup;
     double tempo_sequencial,tempo_paralelo;
@@ -37,6 +38,7 @@ int main() {
        
         if (vetor[i] > maior){
             maior = vetor[i];
+            indice = i ;
         }
         
     }
@@ -46,12 +48,14 @@ int main() {
 
     printf("Sequencial: \n");
     printf("Maior valor: %d \n",maior);
+    printf("Índice do maior valor: %d \n",indice);
     printf("Tempo de execução: %.4f \n",tempo_sequencial);
 
     //Paralelo:
     inicio = 0;
     fim = 0;
     maior = vetor[0];
+    indice = 0;
 
     inicio = omp_get_wtime();
 
@@ -62,6 +66,7 @@ int main() {
     
             if (vetor[i] > maior){
                 maior = vetor[i];
+                indice = i ;
         	}
     }
     }
@@ -71,6 +76,7 @@ int main() {
 
     printf("Paralelo: \n");
     printf("Maior valor: %d \n",maior);
+    printf("Índice do maior valor: %d \n",indice);
     printf("Tempo de execução: %.4f \n",tempo_paralelo);
     
     speedup = tempo_sequencial / tempo_paralelo;
