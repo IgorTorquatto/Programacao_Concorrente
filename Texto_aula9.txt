@@ -1,0 +1,57 @@
+-Sincronização:
+
+Quando mais de uma thread acessam a mesma variável um problmea pode ser gerado;
+Mecanismos de Sincronização
+
+Critical:
+x = x+i apenas uma thread de cada vez acessa a variável
+não se coloca dentro do laço de repetição porque volta a ser sequencial
+usa-se com poucas operações, geralmente em somatórios (soma de cada thread)
+pode-se fazer um bloco {} várias operações
+
+atomic:
+somente em somas e só uma linha apenas o #atomic
+
+barrier:
+Todas as threads devem chegar até esse ponto para  que o código "continue"
+
+
+Escopos
+
+private
+torna uma variavel global em local
+Quando não se precisa do valor inicial
+
+X global
+x x x x x (cada thread) -sem valor, não importa o valor de X, só usa a variável com o mesmo novamente
+
+firist private
+X global
+x x x x x (cada thread) -com valor, copia valor de X, se X for 5 cada x será 5 também
+
+shared (padrão)
+torna uma variacel local em uma global
+
+reduction
+
+global -> privado -> torna global denovo
+assemelha-se ao critical
+quando varias threads fazem operações diferentes com a mesma variavel e ela precisa se tornar global novamente
+
+
+
+Relembrando:
+
+pragma omp parallel 
+{
+
+} -> barreira implicita
+dentro do bloco faz com que cada thread execute o mesmo código.
+
+
+No calculo de pi (paralelo) :
+
+a variavel x é diferente para cada thread porque ela está atrelada ao valor de i do laço de repetição for, logo precisamos tornar o x local
+como soma é global e também se altera em cada thread porque usa o valor de x , cada thread também usa a soma global e não a sua propria , logo podemos deixar ela privada e somar no final ou usar o reduction
+
+x,sum-> compartilhado
