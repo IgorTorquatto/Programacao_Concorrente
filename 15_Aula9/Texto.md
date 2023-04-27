@@ -28,7 +28,23 @@ Uma tarefa que está sendo executada atualmente por uma thread é chamada de **t
 
 *Lembrando que* a menos que você faça alguns arranjos especiais, a ordem de execução das diferentes tarefas é indefinida. Observe o exemplo: 
 
-Imagem captura tela
-![Exemplo]()
+Imagem captura tela:
+
+<img src="./Captura de tela de 2023-04-27 09-36-12.png">
 
 Isso mantém as devidas dependências, mas, por envolver todas as tarefas, essencialmente serializa o paralelismo delas. Isso quer dizer que não se pode exagerar nas dependências.
+
+### Criação das tasks
+
+Inicialmente, vamos usar o seguinte exemplo para a criação das taks com o OpenMP
+
+1. #pragma omp task
+2. barreira (implícita ou explícita)
+3. #pragma omp taskwait
+4. #pragma omp taskgroup
+
+Nesse sentido, as tasks definidas serão geradas para serem executadas nas threads.
+
+Imagem captura tela
+
+<img src="">
