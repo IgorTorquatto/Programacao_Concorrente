@@ -28,7 +28,7 @@ Uma tarefa que está sendo executada atualmente por uma thread é chamada de **t
 
 *Lembrando que* a menos que você faça alguns arranjos especiais, a ordem de execução das diferentes tarefas é indefinida. Observe o exemplo: 
 
-Imagem captura tela:
+Imagem:
 
 <img src="./Captura de tela de 2023-04-27 09-36-12.png">
 
@@ -45,6 +45,13 @@ Inicialmente, vamos usar o seguinte exemplo para a criação das taks com o Open
 
 Nesse sentido, as tasks definidas serão geradas para serem executadas nas threads.
 
-Imagem captura tela
+Imagem:
 
-<img src="">
+<img src="./Captura de tela_2023-04-27_10-30-04.png">
+
+**Importante:**
+
+* Tasks não substituem tudo.
+* Por exemplo, se a construção do loop funcionar bem não é necessário usar as taks.
+* Considere usar as tasks quando as coisas forem muito mais dinâmicas ou se você não pode prever quanto trabalho será feito.
+* Também pode-se usar as tasks quando a carga de trabalho estiver desequilibrada.
