@@ -1,0 +1,8 @@
+Linux (baseados em Ubuntu/debian*)
+sudo apt-get install openmpi-bin
+
+Compilar
+mpicc fonte.c -o executavel 
+
+Executar
+mpiexec -n número_de_processos ./executavel

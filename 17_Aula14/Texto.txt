@@ -1,0 +1,49 @@
+Template MPI:
+
+https://github.com/rafaelperazzo/cc0021/blob/master/codigo/mpi_template.c
+
+
+Passo a passo:
+
+int numero;     // Todos os processos possuem sua variável número sem valor
+ if (rank == 0) {    // só executa o processo  rank 0 que é a master
+     numero = -1;      //modifica o valor do número 
+     MPI_Send(&numero, 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
+ } else if (rank == 1) { / só executa o processo  rank 1 que é worker
+     MPI_Recv(&numero, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+     printf("Processo 1 recebeu o numero %d do processo 0\n", numero);
+ }
+ MPI_Finalize();
+
+Lembrando:  
+
+MPI_Send(
+dados
+count
+datatype
+destino
+tag
+communicator
+);
+
+MPI_Send(&numero, 1, MPI_INT, 1(rank 1), 0, MPI_COMM_WORLD);  // do rank 0
+
+
+MPI_Recv(
+dados
+count
+datatype
+origem
+tag
+communicator
+status
+);
+
+MPI_Recv(&numero, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE); // do rank 1
+
+obs: Ou seja, o processo 1 recebeu o valor -1 do processo 0 por meio do mpi send e recv, inicialmente o processo 1 só tinha a variável 1 declarada, mas sem valor, mas após o send
+e receive o numero do processo 1 recebe o valor -1.
+
+Nesse cado se passarmos o comando "mpiexec -n 4" os dois primeiros processos (0,1) vão executar esse código, porém os outros (2,3) não irão executar nada.
+
+Não se usa scanf nos ranks, se for usar deve ser antes.
