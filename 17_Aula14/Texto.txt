@@ -47,3 +47,10 @@ e receive o numero do processo 1 recebe o valor -1.
 Nesse cado se passarmos o comando "mpiexec -n 4" os dois primeiros processos (0,1) vão executar esse código, porém os outros (2,3) não irão executar nada.
 
 Não se usa scanf nos ranks, se for usar deve ser antes.
+
+Ainda existe o MPI_Bcast que envia os dados de um root para todos os demais processos, para um processo receber um dado enviado pelo root também se usa o MPI_Bcast
+Nesse sentido o send -> rcv
+bcast -> bcast
+
+O Reduce faz a operação de gravar as somas parciais de cada processo em uma variável total, somente o rank root irá imprimir o valor da variável total.
+Exemplo: https://github.com/rafaelperazzo/cc0021/blob/master/codigo/10_mpi_pi.c
