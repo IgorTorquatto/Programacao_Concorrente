@@ -1,78 +1,62 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <mpi.h>
+#include <time.h>
 
 #define N 1000
 
-void multiply_matrices(double *A, double *B, double *C, int local_n, int n) {
-  for (int i = 0; i < local_n; i++) {
-    for (int j = 0; j < n; j++) {
-      double sum = 0.0;
-      for (int k = 0; k < n; k++) {
-        sum += A[i*n+k] * B[k*n+j];
-      }
-      C[i*n+j] = sum;
-    }
-  }
-}
-
-int main(int argc, char *argv[]) {
-  int rank, size, local_n;
-  double *A, *B, *C, *local_A, *local_C;
+int main(int argc, char** argv) {
+  int rank, size;
+  double A[N][N], B[N][N], C[N][N];
+  double tempo;
+  signed long i, j, k;
 
   MPI_Init(&argc, &argv);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-  // set local_n as the number of rows of matrix A to be processed by each process
-  local_n = N / size;
+  // Dividindo o trabalho entre os processos
+  signed long chunk_size = N / size;
+  signed long chunk_start = rank * chunk_size;
+  signed long chunk_end = (rank == size - 1) ? N : chunk_start + chunk_size;
 
-  // allocate memory for A, B, and C matrices
-  if (rank == 0) {
-    A = (double*)malloc(N*N*sizeof(double));
-    B = (double*)malloc(N*N*sizeof(double));
-    C = (double*)malloc(N*N*sizeof(double));
-    // initialize A and B matrices
-    for (int i = 0; i < N; i++) {
-      for (int j = 0; j < N; j++) {
-        A[i*N+j] = i + j;
-        B[i*N+j] = i - j;
-      }
+  // Inicialização
+  for (i = chunk_start; i < chunk_end; i++) {
+    for (j = 0; j < N; j++) {
+      A[i][j] = i + j;
+      B[i][j] = i - j;
     }
   }
 
-  // allocate memory for local_A and local_C matrices
-  local_A = (double*)malloc(local_n*N*sizeof(double));
-  local_C = (double*)malloc(local_n*N*sizeof(double));
+  // Sincronização antes da multiplicação
+  MPI_Barrier(MPI_COMM_WORLD);
 
-  // scatter matrix A to all processes
-  MPI_Scatter(A, local_n*N, MPI_DOUBLE, local_A, local_n*N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
-  // broadcast matrix B to all processes
-  MPI_Bcast(B, N*N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+  // Multiplicação
+  clock_t inicio = clock();
 
-  // perform matrix multiplication on local_A and B and store result in local_C
-  multiply_matrices(local_A, B, local_C, local_n, N);
-
-  // gather local_C matrices from all processes to matrix C on process 0
-  MPI_Gather(local_C, local_n*N, MPI_DOUBLE, C, local_n*N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
-
-  // print result matrix C on process 0
-  if (rank == 0) {
-
-    /*for (int i = 0; i < N; i++) {
-      for (int j = 0; j < N; j++) {
-        printf("%f ", C[i*N+j]);
+  for (i = chunk_start; i < chunk_end; i++) {
+    for (j = 0; j < N; j++) {
+      double sum = 0.0;
+      for (k = 0; k < N; k++) {
+        sum += A[i][k] * B[k][j];
       }
-      printf("\n");
-    }*/
-
-    free(A);
-    free(B);
-    free(C);
+      C[i][j] = sum;
+    }
   }
 
-  free(local_A);
-  free(local_C);
+  // Sincronização após a multiplicação
+  MPI_Barrier(MPI_COMM_WORLD);
+
+  clock_t fim = clock();
+  tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
+
+  // Redução dos tempos para o processo 0
+  double total_tempo;
+  MPI_Reduce(&tempo, &total_tempo, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+
+  if (rank == 0) {
+    printf("Tempo total: %.2f s\n", total_tempo);
+  }
 
   MPI_Finalize();
 
