@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <mpi.h>
 
 #define N 1000
@@ -57,12 +58,14 @@ int main(int argc, char *argv[]) {
 
   // print result matrix C on process 0
   if (rank == 0) {
-    for (int i = 0; i < N; i++) {
+
+    /*for (int i = 0; i < N; i++) {
       for (int j = 0; j < N; j++) {
         printf("%f ", C[i*N+j]);
       }
       printf("\n");
-    }
+    }*/
+
     free(A);
     free(B);
     free(C);
