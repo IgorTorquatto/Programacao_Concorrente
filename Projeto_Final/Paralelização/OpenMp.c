@@ -3,11 +3,11 @@
 #include <omp.h>
 #include <time.h>
 
-#define N 1000
+#define N 3000
 
 int main() {
 
-  //As matrizes precisam ser alocadas na head por terem um tamanho muito grande e evitar o StackOverFlow:
+  //As matrizes precisam ser alocadas na heap por terem um tamanho muito grande e evitar o StackOverFlow:
   
   double (*A)[N] = (double (*)[N])malloc(sizeof(double[N][N]));
   double (*B)[N] = (double (*)[N])malloc(sizeof(double[N][N]));
@@ -27,7 +27,7 @@ int main() {
   clock_t inicio = clock();
 
   omp_set_num_threads(4);  // Definir o número de threads como 4
-
+  
   #pragma omp parallel for private(j, k)
   for (i = 0; i < N; i++) {
     for (j = 0; j < N; j++) {

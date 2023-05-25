@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define N 1000
+#define N 3000
 
 int main() {
   
@@ -33,7 +33,7 @@ int main() {
     }
   }
 
-  clock_t fim = clock();
+  clock_t fim = clock(); 
   tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
 
   printf("Tempo: %.2f s\n", tempo);

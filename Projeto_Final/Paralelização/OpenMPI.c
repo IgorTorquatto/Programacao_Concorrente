@@ -3,11 +3,13 @@
 #include <mpi.h>
 #include <time.h>
 
-#define N 1000
+#define N 3000
 
 int main(int argc, char** argv) {
   int rank, size;
-  double A[N][N], B[N][N], C[N][N];
+  double (*A)[N] = malloc(sizeof(double[N][N]));
+  double (*B)[N] = malloc(sizeof(double[N][N]));
+  double (*C)[N] = malloc(sizeof(double[N][N]));
   double tempo;
   signed long i, j, k;
 
@@ -59,6 +61,10 @@ int main(int argc, char** argv) {
   }
 
   MPI_Finalize();
+
+  free(A);
+  free(B);
+  free(C);
 
   return 0;
 }
