@@ -1,0 +1,13 @@
+- Por que a complexidade é n ao cubo?
+A complexidade do problema de multiplicação de matrizes é de fato O(n^3), onde "n" é a dimensão das matrizes. A multiplicação de matrizes envolve três loops aninhados, cada um percorrendo as dimensões das matrizes, e a operação realizada em cada iteração do loop é uma multiplicação e uma adição, que são operações elementares.
+Se tivermos duas matrizes quadradas de dimensão n x n, por exemplo, o primeiro loop percorrerá n linhas, o segundo loop percorrerá n colunas e o terceiro loop percorrerá novamente n elementos. Isso resulta em um total de n^3 operações elementares, o que define a complexidade do algoritmo como O(n^3).
+Portanto, a complexidade da multiplicação de matrizes é cúbica, não quadrática, o que significa que o tempo de execução aumenta de forma significativa à medida que o tamanho das matrizes aumenta. Essa é uma das razões pelas quais a multiplicação de matrizes pode ser um problema computacionalmente exigente, especialmente para matrizes grandes.
+
+-Por que usar signed long?
+Um "signed long" é um tipo de dado inteiro de tamanho maior que um "int" padrão. Nesse código em particular, a variável "i", "j" e "k" foram declaradas como "signed long", ou seja, elas são do tipo "long" com sinal.
+O motivo provável para o uso do "signed long" nesse código é garantir que as variáveis tenham um tamanho suficientemente grande para armazenar valores dentro dos limites necessários. Essa escolha pode ter sido feita porque o tamanho das matrizes envolvidas na multiplicação é de N x N, onde N é definido como 3000. Usando "signed long" para as variáveis de controle dos loops, garante-se que elas possam acessar todos os índices necessários para percorrer as matrizes.
+Em resumo, o uso do "signed long" nesse código foi feito para acomodar o tamanho das matrizes envolvidas na multiplicação e garantir que as variáveis de controle dos loops tenham um tamanho suficiente para acessar todos os índices necessários.
+
+- O processador AMD Athlon 3000G possui 2 threads.
+-O processador Intel Core i5-8500T possui 6 threads.
+-Estou usando vinte e sete bilhões de elementos.
